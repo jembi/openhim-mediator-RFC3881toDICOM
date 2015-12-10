@@ -1,0 +1,17 @@
+{
+  "name": "openhim-mediator-rfc3881todicom",
+  "version": "0.1.0",
+  "description": "Converts RFC3881 audit messages to DICOM",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test.js --cov",
+    "start": "node index"
+  },
+  "author": "Jembi",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "glossy": "^0.1.7",
+    "libxslt": "^0.6.0",
+    "tap": "^2.3.1"
+  }
+}

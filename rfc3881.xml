@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuditMessage>
+  <EventIdentification EventActionCode="E" EventDateTime="2015-12-10T09:42:24.128Z" EventOutcomeIndicator="0">
+    <EventID code="110114" displayName="UserAuthenticated" codeSystemName="DCM"/>
+    <EventTypeCode code="110122" displayName="Login" codeSystemName="DCM"/>
+  </EventIdentification>
+  <ActiveParticipant UserID="openhim" AlternativeUserID="" UserIsRequestor="true" NetworkAccessPointID="ryan-Latitude-E6540" NetworkAccessPointTypeCode="1">
+    <RoleIDCode code="110150" displayName="Application" codeSystemName="DCM"/>
+  </ActiveParticipant>
+  <ActiveParticipant UserID="root@openhim.org" AlternativeUserID="">
+    <RoleIDCode code="admin" displayName="admin" codeSystemName="admin"/>
+  </ActiveParticipant>
+  <AuditSourceIdentification AuditEnterpriseSiteID="" AuditSourceID="openhim">
+    <AuditSourceTypeCode code="1" displayName="" codeSystemName=""/>
+  </AuditSourceIdentification>
+</AuditMessage>
