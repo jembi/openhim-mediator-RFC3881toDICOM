@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jembi/openhim-mediator-RFC3881toDICOM.svg)](https://travis-ci.org/jembi/openhim-mediator-RFC3881toDICOM)
+[![Build Status](https://travis-ci.org/jembi/openhim-mediator-RFC3881toDICOM.svg)](https://travis-ci.org/jembi/openhim-mediator-RFC3881toDICOM) [![codecov.io](https://codecov.io/github/jembi/openhim-mediator-RFC3881toDICOM/coverage.svg?branch=master)](https://codecov.io/github/jembi/openhim-mediator-RFC3881toDICOM?branch=master)
 
 OpenHIM Mediator for converting RFC 3881 audits to DICOM
 ========================================================
