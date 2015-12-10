@@ -27,8 +27,8 @@ API reference
 ```
 const audits = require('openhim-mediator-rfc3881todicom');
 
-// xml is a string of the rfc3881 formated xml and the callback return a string
-// with the corresponding DICOM formatted xml.
+// XML is a string of the rfc3881 formated XML and the callback return a string
+// with the corresponding DICOM formatted XML.
 audits.convertRFC3881toDICOM(xml, function (err, dicom) {
   console.log(dicom);
 }
