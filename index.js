@@ -3,7 +3,9 @@
 const fs = require('fs');
 const libxslt = require('libxslt');
 const net = new require('net');
-const syslogParser = require('glossy').Parse;
+const glossy = require('glossy');
+const syslogParser = glossy.Parse;
+const syslogProducer = new glossy.Produce();
 
 exports.convertRFC3881toDICOM = (xml, callback) => {
   const transform = fs.readFileSync('rfc3881toDICOM.xslt', 'utf-8');
@@ -26,8 +28,11 @@ exports.startMediator = (callback) => {
         let xml = parsedMsg.message;
         exports.convertRFC3881toDICOM(xml, (err, dicom) => {
           const client = net.connect(6262, () => {
-            client.end(dicom);
-            socket.end();
+            parsedMsg.message = dicom;
+            syslogProducer.produce(parsedMsg, (msg) => {
+              client.end(msg);
+              socket.end();
+            });
           });
         });
       });
