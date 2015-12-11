@@ -8,8 +8,8 @@ where you can send ATNA audits to and it will convert these to the DICOM format.
 
 It can also be used as a standalone js library if you don't need tcp servers.
 
-If either of those don't suit your needs, just grab the XSLT and that performs
-the XML transform and use that is your code.
+If either of those don't suit your needs, just grab the XSLT that performs
+the XML transform and use that in own your code.
 
 Getting started
 ---------------
@@ -21,6 +21,9 @@ npm install rfc3881todicom -g
 ### To run as an OpenHIM mediator
 
 Run using `$ rfc3881todicom`
+
+(if you are using a self-signed OpenHIM certificate you may need to run
+`$ NODE_TLS_REJECT_UNAUTHORIZED=0 rfc3881todicom`)
 
 This will expose a tcp server on port 6161. Now, forward it some audits. It will
 forward these to an upstream server on port localhost:6262 by default.
@@ -42,8 +45,13 @@ Create a `config.json` file as follow:
 
 Run with: `$ rfc3881todicom --conf=/path/to/config.json`
 
+This will expose a tcp server on port 6161. Now, forward it some audits. It will
+forward these to the upstream server that you setup in `config.json`.
+
 API reference form use as a lib
 -------------------------------
+
+`$ npm install rfc3881todicom --save`
 
 ```
 const audits = require('openhim-mediator-rfc3881todicom');
