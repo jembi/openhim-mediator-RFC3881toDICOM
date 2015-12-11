@@ -36,7 +36,7 @@ audits are sent in OpenHIM console, under the rfc3881toDICOM mediator settings.
 
 Create a `config.json` file as follow:
 
-```
+```js
 {
   "upstreamHost": "localhost",
   "upstreamPort": 6262
@@ -53,7 +53,7 @@ API reference form use as a lib
 
 `$ npm install rfc3881todicom --save`
 
-```
+```js
 const audits = require('openhim-mediator-rfc3881todicom');
 
 // XML is a string of the rfc3881 formated XML and the callback return a string
