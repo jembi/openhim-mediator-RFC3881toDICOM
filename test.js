@@ -5,6 +5,9 @@ const mediator = require('./index');
 const net = require('net');
 const tap = require('tap');
 
+const config = require('./config/config');
+config.register = false;
+
 const rfc3881 = fs.readFileSync('rfc3881.xml', 'utf-8');
 const dicom = fs.readFileSync('dicom.xml', 'utf-8');
 

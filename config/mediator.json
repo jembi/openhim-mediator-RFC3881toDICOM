@@ -1,0 +1,60 @@
+{
+  "urn": "urn:uuid:01b1c4eb-31b7-428a-aa51-c759825f8bdf",
+  "version": "0.5.0",
+  "name": "rfc3881toDICOM",
+  "description": "Converts RFC3881 audit messages to DICOM",
+  "defaultChannelConfig": [
+    {
+      "name": "audits",
+      "urlPattern": "/audit/.*",
+      "alerts": [],
+      "txRerunAcl": [],
+      "txViewFullAcl": [],
+      "txViewAcl": [],
+      "properties": [],
+      "matchContentTypes": [],
+      "routes": [
+        {
+          "name": "rfc3881 to DICOM mediator",
+          "host": "localhost",
+          "path": "/audit/.*",
+          "port": "6161",
+          "primary": true,
+          "type": "tcp"
+        }
+      ],
+      "allow": ["admin"],
+      "type": "tcp",
+      "tcpPort": 6060,
+      "tcpHost": "0.0.0.0"
+    }
+  ],
+  "endpoints": [
+    {
+      "name": "rfc3881 to DICOM mediator",
+      "host": "localhost",
+      "path": "/audit/.*",
+      "port": "6161",
+      "primary": true,
+      "type": "tcp"
+    }
+  ],
+  "configDefs": [
+    {
+      "displayName": "Upstream host",
+      "description": "The host to forward the transformed audit to.",
+      "param": "upstreamHost",
+      "type": "string"
+    },
+    {
+      "displayName": "Upstream port",
+      "description": "The port to forward the transformed audit to.",
+      "param": "upstreamPort",
+      "type": "number"
+    }
+  ],
+  "config": {
+    "upstreamHost": "localhost",
+    "upstreamPort": 6262
+  }
+}
