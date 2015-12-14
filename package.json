@@ -11,9 +11,11 @@
   "author": "Jembi",
   "license": "MPL-2.0",
   "dependencies": {
-    "glossy": "^0.1.7",
+    "glossy": "rcrichton/glossy",
     "libxslt": "^0.6.0",
-    "openhim-mediator-utils": "^0.2.2",
+    "openhim-mediator-utils": "^0.2.2"
+  },
+  "devDependencies": {
     "tap": "^2.3.1"
   }
 }
