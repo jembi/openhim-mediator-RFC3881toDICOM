@@ -1,6 +1,6 @@
 {
   "name": "rfc3881todicom",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Converts RFC3881 audit messages to DICOM",
   "main": "index.js",
   "scripts": {
