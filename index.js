@@ -31,13 +31,24 @@ let server = null;
 exports.startMediator = (callback) => {
   server = net.createServer((socket) => {
     socket.on('data', (msg) => {
+      msg = msg.toString();
+
+      // strip message length prefix - RFC 6587
+      let lengthIndex = msg.indexOf(' ');
+      let lengthValue = msg.substr(0, lengthIndex);
+      let length = parseInt(lengthValue.trim());
+      msg = msg.substr(lengthIndex + 1);
+      if (length != msg.length) {
+        console.warn('Audit message length does not equal the message prefix as per RFC 6587');
+      }
+
       syslogParser.parse(msg, (parsedMsg) => {
         let xml = parsedMsg.message;
         exports.convertRFC3881toDICOM(xml, (err, dicom) => {
           const client = net.connect(config.upstreamPort, config.upstreamHost, () => {
             parsedMsg.message = dicom;
             syslogProducer.produce(parsedMsg, (msg) => {
-              client.end(msg);
+              client.end(`${msg.length} ${msg}`);
               socket.end();
             });
           });
