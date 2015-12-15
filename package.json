@@ -4,9 +4,9 @@
   "description": "Converts RFC3881 audit messages to DICOM",
   "main": "index.js",
   "scripts": {
-    "test": "tap test.js --cov -t2",
+    "test": "tap test/test.js --cov -t2",
     "start": "node index",
-    "cov": "tap test.js --cov -t2 --coverage-report=lcov"
+    "cov": "tap test/test.js --cov -t2 --coverage-report=lcov"
   },
   "bin": "./index.js",
   "author": "Jembi",

@@ -4,10 +4,10 @@
     <EventID csd-code="110114" originalText="UserAuthenticated" codeSystemName="DCM"/>
     <EventTypeCode csd-code="110122" originalText="Login" codeSystemName="DCM"/>
   </EventIdentification>
-  <ActiveParticipant UserIsRequestor="true" UserID="openhim" AlternativeUserID="" NetworkAccessPointID="ryan-Latitude-E6540" NetworkAccessPointTypeCode="1">
+  <ActiveParticipant UserIsRequestor="true" AlternativeUserID="" UserID="openhim" NetworkAccessPointID="ryan-Latitude-E6540" NetworkAccessPointTypeCode="1">
     <RoleIDCode csd-code="110150" originalText="Application" codeSystemName="DCM"/>
   </ActiveParticipant>
-  <ActiveParticipant UserIsRequestor="false" UserID="root@openhim.org" AlternativeUserID="">
+  <ActiveParticipant UserIsRequestor="false" AlternativeUserID="" UserID="root@openhim.org">
     <RoleIDCode csd-code="admin" originalText="admin" codeSystemName="admin"/>
   </ActiveParticipant>
   <AuditSourceIdentification code="1" AuditEnterpriseSiteID="" AuditSourceID="openhim">
