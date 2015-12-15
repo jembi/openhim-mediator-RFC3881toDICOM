@@ -1,6 +1,6 @@
 {
   "urn": "urn:uuid:01b1c4eb-31b7-428a-aa51-c759825f8bdf",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "name": "rfc3881toDICOM",
   "description": "Converts RFC3881 audit messages to DICOM",
   "defaultChannelConfig": [
