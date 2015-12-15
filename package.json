@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "tap test.js --cov -t2",
-    "start": "node index"
+    "start": "node index",
+    "cov": "tap test.js --cov -t2 --coverage-report=lcov"
   },
   "bin": "./index.js",
   "author": "Jembi",

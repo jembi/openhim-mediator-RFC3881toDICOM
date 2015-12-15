@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
+const dgram = require('dgram');
 const fs = require('fs');
 const libxslt = require('libxslt');
 const net = new require('net');
@@ -27,8 +28,10 @@ exports.convertRFC3881toDICOM = (xml, callback) => {
 };
 
 let server = null;
+let udpServer = null;
 
 exports.startMediator = (callback) => {
+  // TCP server
   server = net.createServer((socket) => {
     socket.on('data', (msg) => {
       msg = msg.toString();
@@ -56,10 +59,31 @@ exports.startMediator = (callback) => {
       });
     });
   }).listen(6161, callback);
+
+  // UDP server
+  udpServer = dgram.createSocket('udp4');
+
+  udpServer.on('message', (msg) => {
+    syslogParser.parse(msg, (parsedMsg) => {
+      let xml = parsedMsg.message;
+      exports.convertRFC3881toDICOM(xml, (err, dicom) => {
+        const client = net.connect(config.upstreamPort, config.upstreamHost, () => {
+          parsedMsg.message = dicom;
+          syslogProducer.produce(parsedMsg, (msg) => {
+            client.end(`${msg.length} ${msg}`);
+          });
+        });
+      });
+    });
+  });
+
+  udpServer.bind(6363);
 };
 
 exports.stopMediator = (callback) => {
-  server.close(callback);
+  server.close(() => {
+    udpServer.close(callback);
+  });
 };
 
 // default to config from mediator registration
@@ -93,7 +117,7 @@ if (!module.parent) {
           process.exit(1);
         } else {
           console.log('Successfully registered mediator!');
-          exports.startMediator(() => console.log('rfc3881toDICOM Medaitor listening on 6161...') );
+          exports.startMediator(() => console.log('rfc3881toDICOM Mediator listening on 6161...') );
           let configEmitter = utils.activateHeartbeat(apiConf.api);
           configEmitter.on('config', (newConfig) => {
             console.log('Received updated config:');
@@ -106,6 +130,6 @@ if (!module.parent) {
   } else {
     // startup standalone
     console.log('Starting in standalone mode.');
-    exports.startMediator(() => console.log('rfc3881toDICOM Medaitor listening on 6161...') );
+    exports.startMediator(() => console.log('rfc3881toDICOM Mediator listening on 6161...') );
   }
 }
