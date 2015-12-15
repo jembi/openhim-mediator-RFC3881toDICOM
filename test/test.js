@@ -2,15 +2,15 @@
 
 const dgram = require('dgram');
 const fs = require('fs');
-const mediator = require('./index');
+const mediator = require('../index');
 const net = require('net');
 const tap = require('tap');
 
-const config = require('./config/config');
+const config = require('../config/config');
 config.register = false;
 
-const rfc3881 = fs.readFileSync('rfc3881.xml', 'utf-8');
-const dicom = fs.readFileSync('dicom.xml', 'utf-8');
+const rfc3881 = fs.readFileSync('test/rfc3881.xml', 'utf-8');
+const dicom = fs.readFileSync('test/dicom.xml', 'utf-8');
 
 const audit =    `<85>1 2015-12-10T09:42:24.129Z ryan-Latitude-E6540 atna-audit.js 19381 IHE+RFC-3881 - ${rfc3881}`;
 const expected = `<85>1 2015-12-10T09:42:24.129Z ryan-Latitude-E6540 atna-audit.js 19381 IHE+RFC-3881 - ${dicom}`;
@@ -64,12 +64,38 @@ tap.test('should convert audits received over UDP', function(t) {
   });
 });
 
-tap.test('Use as standalone lib', function(t) {
-  mediator.convertRFC3881toDICOM(rfc3881, (err, dicom) => {
+tap.test('should function as standalone lib', function(t) {
+  mediator.convertRFC3881toDICOM(rfc3881, (err, output) => {
     if (err) {
       return t.fail('Error returned', err);
     }
-    t.equal(dicom, dicom);
+    t.equal(output, dicom);
+    t.end();
+  });
+});
+
+const openxdsQuery = fs.readFileSync('test/openxds-query.xml', 'utf-8');
+const expectedQuery = fs.readFileSync('test/valid-query.xml', 'utf-8');
+
+tap.test('should correct OpenXDS query audit (ITI-18)', function(t) {
+  mediator.convertRFC3881toDICOM(openxdsQuery, (err, output) => {
+    if (err) {
+      return t.fail('Error returned', err);
+    }
+    t.equal(output, expectedQuery);
+    t.end();
+  });
+});
+
+const openxdsImport = fs.readFileSync('test/openxds-import.xml', 'utf-8');
+const expectedImport = fs.readFileSync('test/valid-import.xml', 'utf-8');
+
+tap.test('should correct OpenXDS import audit (ITI-42)', function(t) {
+  mediator.convertRFC3881toDICOM(openxdsImport, (err, output) => {
+    if (err) {
+      return t.fail('Error returned', err);
+    }
+    t.equal(output, expectedImport);
     t.end();
   });
 });

@@ -1,0 +1,17 @@
+<AuditMessage>
+    <EventIdentification EventOutcomeIndicator="0" EventDateTime="2015-12-15T12:26:34.764Z" EventActionCode="E">
+        <EventID codeSystemName="DCM" displayName="Query" code="110112"/>
+        <EventTypeCode codeSystemName="IHE Transactions" displayName="Registry Stored Query" code="ITI-18"/>
+    </EventIdentification>
+    <ActiveParticipant xsi:type="ActiveParticipantType" NetworkAccessPointTypeCode="2" NetworkAccessPointID="10.0.2.2" UserIsRequestor="true" UserID="http://www.w3.org/2005/08/addressing/anonymous" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <RoleIDCode codeSystemName="DCM" displayName="Source" code="110153"/>
+    </ActiveParticipant>
+    <ActiveParticipant xsi:type="ActiveParticipantType" NetworkAccessPointTypeCode="2" NetworkAccessPointID="10.0.2.15" UserIsRequestor="false" UserID="http://localhost:8010/axis2/services/xdsregistryb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <RoleIDCode codeSystemName="DCM" displayName="Destination" code="110152"/>
+    </ActiveParticipant>
+    <AuditSourceIdentification AuditSourceID="OPENHIM" AuditEnterpriseSiteID="OPENHIM"/>
+    <ParticipantObjectIdentification ParticipantObjectTypeCodeRole="24" ParticipantObjectTypeCode="2" ParticipantObjectID="urn:uuid:e8e3cb2c-e39c-46b9-99e4-c12f57260b83">
+        <ParticipantObjectIDTypeCode codeSystemName="IHE Transactions" codeSystem="IHE Transactions" displayName="Registry Stored Query" code="ITI-18"/>
+        <ParticipantObjectQuery>PHF1ZXJ5OkFkaG9jUXVlcnlSZXF1ZXN0IHhtbG5zOnF1ZXJ5PSJ1cm46b2FzaXM6bmFtZXM6dGM6ZWJ4bWwtcmVncmVwOnhzZDpxdWVyeTozLjAiPgogICAgPHF1ZXJ5OlJlc3BvbnNlT3B0aW9uIHJldHVybkNvbXBvc2VkT2JqZWN0cz0idHJ1ZSIgcmV0dXJuVHlwZT0iTGVhZkNsYXNzIiAvPgogICAgPHRhZzA6QWRob2NRdWVyeSB4bWxuczp0YWcwPSJ1cm46b2FzaXM6bmFtZXM6dGM6ZWJ4bWwtcmVncmVwOnhzZDpyaW06My4wIiBpZD0idXJuOnV1aWQ6ZThlM2NiMmMtZTM5Yy00NmI5LTk5ZTQtYzEyZjU3MjYwYjgzIj4KICAgICAgICA8dGFnMDpTbG90IG5hbWU9IiRYRFNTdWJtaXNzaW9uU2V0VW5pcXVlSWQiPgogICAgICAgICAgICA8dGFnMDpWYWx1ZUxpc3Q+CiAgICAgICAgICAgICAgICA8dGFnMDpWYWx1ZT4nMS40Mi4yMDE1MTIwNDEzMTcxMy4yMTAnPC90YWcwOlZhbHVlPgogICAgICAgICAgICA8L3RhZzA6VmFsdWVMaXN0PgogICAgICAgIDwvdGFnMDpTbG90PgogICAgPC90YWcwOkFkaG9jUXVlcnk+CjwvcXVlcnk6QWRob2NRdWVyeVJlcXVlc3Q+</ParticipantObjectQuery>
+    </ParticipantObjectIdentification>
+</AuditMessage>
