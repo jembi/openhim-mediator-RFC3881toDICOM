@@ -20,14 +20,14 @@ tap.test('Main integration test', function(t) {
     let server = net.createServer((socket) => {
       console.log('connected to test upstream');
       socket.on('data', (buffer) => {
-        t.equal(buffer.toString(), expected);
+        t.equal(buffer.toString(), `${expected.length} ${expected}`);
         t.end();
       });
     }).listen(6262, () => {
       console.log('Test upstream server listening...');
       // send test rfc3881 message
       let client = net.connect(6161, () => {
-        client.write(audit);
+        client.write(`${audit.length} ${audit}`);
         client.on('end', () => {
           client.end();
           mediator.stopMediator(() => {
