@@ -51,7 +51,7 @@ exports.startMediator = (callback) => {
           const client = net.connect(config.upstreamPort, config.upstreamHost, () => {
             parsedMsg.message = dicom;
             syslogProducer.produce(parsedMsg, (msg) => {
-              client.end(`${msg.length} ${msg}`);
+              client.end(`${Buffer.byteLength(msg)} ${msg}`);
               socket.end();
             });
           });
@@ -64,13 +64,13 @@ exports.startMediator = (callback) => {
   udpServer = dgram.createSocket('udp4');
 
   udpServer.on('message', (msg) => {
-    syslogParser.parse(msg, (parsedMsg) => {
+    syslogParser.parse(msg.toString(), (parsedMsg) => {
       let xml = parsedMsg.message;
       exports.convertRFC3881toDICOM(xml, (err, dicom) => {
         const client = net.connect(config.upstreamPort, config.upstreamHost, () => {
           parsedMsg.message = dicom;
           syslogProducer.produce(parsedMsg, (msg) => {
-            client.end(`${msg.length} ${msg}`);
+            client.end(`${Buffer.byteLength(msg)} ${msg}`);
           });
         });
       });
